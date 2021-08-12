@@ -1,25 +1,6 @@
-﻿#include "game/th06.h"
-#include "game/th07.h"
-#include "game/th08.h"
-#include "game/th09.h"
-#include "game/th10.h"
-#include "game/th11.h"
-#include "game/th12.h"
-#include "game/th128.h"
-#include "game/th13.h"
-#include "game/th14.h"
-#include "game/th15.h"
-#include "game/th16.h"
-#include "game/th17.h"
-#include "game/th18.h"
-
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <algorithm>
+﻿#include <string>
 #include <utility>
 #include <Windows.h>
-#include <TlHelp32.h>
 
 std::wstring GAME_LIST[] = {
 	L"",

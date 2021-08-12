@@ -1,5 +1,8 @@
 #include "thjudge-core.h"
 
+#include <stdio.h>
+#include <algorithm>
+#include <TlHelp32.h>
 /*
 wchar_t* get_process_fullpath(DWORD proc_id)
 {

@@ -5,7 +5,12 @@
 class TH128 : public THXX
 {
 public:
-	TH128(HANDLE);
+	enum class VERSION
+	{
+		V100A
+	};
+
+	TH128(HANDLE, VERSION);
 
 	void reset() override;
 
@@ -23,6 +28,17 @@ public:
 private:
 	HANDLE process;
 
+	// address list for 
+	struct TH128_ADDR_LIST
+	{
+		ADDRESS_LIST difficulty;
+		ADDRESS_LIST stage;
+		ADDRESS_LIST p_player_state;
+		ADDRESS_LIST p_bomb_state;
+		ADDRESS_LIST score;
+		ADDRESS_LIST p_medal_state;
+	} th128_addr_list;
+	
 	// get_difficulty
 	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint16_t difficulty = 0;
@@ -32,15 +48,12 @@ private:
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;
 	uint16_t miss_count = 0;
-	uint32_t p_player_state = 0;
 	// get bomb count
 	uint8_t bomb_state = 0, _bomb_state = 0;
 	uint16_t bomb_count = 0;
-	uint32_t p_bomb_state = 0;
 	// get score
 	uint64_t score = 0;
 	// get medals
 	uint8_t medal_state = 0, _medal_state = 0;
 	Medals medals = { 0, 0, 0 };
-	uint32_t p_medal_state = 0;
 };

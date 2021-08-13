@@ -1,7 +1,20 @@
 #include "th128.h"
 
-TH128::TH128(HANDLE process) : process(process)
+TH128::TH128(HANDLE process, VERSION version) : process(process)
 {
+	switch (version)
+	{
+	case TH128::VERSION::V100A:
+		th128_addr_list = {
+			{ 0x004B4D0C },
+			{ 0x004B4D14 },
+			{ 0x004B8A80, 0xF78 },
+			{ 0x004B892C, 0x40 },
+			{ 0x004B4CC4 },
+			{ 0x004B8934, 0x7C }
+		};
+		break;
+	}
 }
 
 void TH128::reset()
@@ -11,20 +24,22 @@ void TH128::reset()
 
 const char* TH128::get_difficulty()
 {
-	ReadProcessMemory(process, (void*)0x004B4D0C, (void*)&difficulty, sizeof(difficulty), 0);
+	if (!read_memory_32(process, th128_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
+		fprintf(stderr, "Failed to read memory of difficulty.\n");
 	return arr_difficulty[difficulty];
 }
 
 const char* TH128::get_route()
 {
-	ReadProcessMemory(process, (void*)0x004B4D14, (void*)&stage, sizeof(stage), 0);
+	if (!read_memory_32(process, th128_addr_list.stage, (void*)&stage, sizeof(stage)))
+		fprintf(stderr, "Failed to read memory of stage.\n");
 	return arr_route[stage];
 }
 
 uint16_t TH128::get_miss_count()
 {
-	ReadProcessMemory(process, (void*)0x004B8A80, (void*)&p_player_state, sizeof(p_player_state), 0);
-	ReadProcessMemory(process, (void*)(p_player_state + 0xF78), (void*)&player_state, sizeof(player_state), 0);
+	if (!read_memory_32(process, th128_addr_list.p_player_state, (void*)&player_state, sizeof(player_state)))
+		fprintf(stderr, "Failed to read memory of player state.\n");
 
 	// if player_state changes form 4 to 2, increase miss_count by 1
 	if (player_state == 2 && player_state != _player_state)
@@ -36,8 +51,8 @@ uint16_t TH128::get_miss_count()
 
 uint16_t TH128::get_bomb_count()
 {
-	ReadProcessMemory(process, (void*)0x004B892C, (void*)&p_bomb_state, sizeof(p_bomb_state), 0);
-	ReadProcessMemory(process, (void*)(p_bomb_state + 0x40), (void*)&bomb_state, sizeof(bomb_state), 0);
+	if (!read_memory_32(process, th128_addr_list.p_bomb_state, (void*)&bomb_state, sizeof(bomb_state)))
+		fprintf(stderr, "Failed to read memory of bomb state.\n");
 	
 	// if bomb_state changes to 1, increase bomb_count by 1
 	if (bomb_state && bomb_state != _bomb_state)
@@ -49,14 +64,15 @@ uint16_t TH128::get_bomb_count()
 
 uint64_t TH128::get_score()
 {
-	ReadProcessMemory(process, (void*)0x004B4CC4, (void*)&score, sizeof(uint32_t), 0);
+	if (!read_memory_32(process, th128_addr_list.score, (void*)&score, sizeof(uint32_t)))
+		fprintf(stderr, "Failed to read memory of score.\n");
 	return score * 10;
 }
 
 TH128::Medals TH128::get_medals()
 {
-	ReadProcessMemory(process, (void*)0x004B8934, (void*)&p_medal_state, sizeof(p_medal_state), 0);
-	ReadProcessMemory(process, (void*)(p_medal_state + 0x7C), (void*)&medal_state, sizeof(medal_state), 0);
+	if (!read_memory_32(process, th128_addr_list.p_medal_state, (void*)&medal_state, sizeof(medal_state)))
+		fprintf(stderr, "Failed to read memory of medal state.\n");
 
 	// if the MSB changes to 0 -> spell card ends, count medals
 	if ((medal_state & 128) == 0 && (_medal_state & 128) > 0)

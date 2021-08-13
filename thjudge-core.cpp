@@ -25,9 +25,9 @@ wchar_t* get_process_fullpath(DWORD proc_id)
 	return fullpath;
 }
 */
-std::pair<HANDLE, int> get_process()
+GAME_PROCESS get_process()
 {
-	HANDLE h_process_snap = NULL;
+	HANDLE h_process_snap, process;
 	int found_index = -1;
 
 	// Take a snapshot of all processes in the system.
@@ -36,7 +36,7 @@ std::pair<HANDLE, int> get_process()
 	{
 		// Failed to snap process
 		fprintf(stderr, "Error: Invalid handle value for process snapping!\n");
-		return std::pair<HANDLE, int>(NULL, -1);
+		return { NULL, -1 };
 	}
 
 	PROCESSENTRY32 pe32;
@@ -51,12 +51,11 @@ std::pair<HANDLE, int> get_process()
 			std::wstring proc_name = pe32.szExeFile;
 			// lowercase all letters
 			std::transform(proc_name.begin(), proc_name.end(), proc_name.begin(), ::tolower);
-			std::wstring* found = std::find(GAME_LIST, GAME_LIST + GAME_COUNT, proc_name);
+			found_index = std::find(GAME_LIST, GAME_LIST + GAME_COUNT, proc_name) - GAME_LIST;
 
-			if (found == GAME_LIST + GAME_COUNT)
+			if (found_index == GAME_COUNT)
 				continue;
 
-			found_index = found - GAME_LIST;
 			/*
 			wchar_t* path = get_process_fullpath(pe32.th32ProcessID);
 
@@ -74,13 +73,22 @@ std::pair<HANDLE, int> get_process()
 				}
 			}
 			*/
+			// Open game process
+			process = OpenProcess(PROCESS_ALL_ACCESS, false, pe32.th32ProcessID);
+
+			if (!process)
+			{
+				// Failed to open process
+				fprintf(stderr, "Failed to open process. Error code: %d\n", GetLastError());
+				break;
+			}
 
 			// Found game, exit loop
-			return std::make_pair(h_process_snap, found_index);
+			return { process, found_index };
 		} while (Process32Next(h_process_snap, &pe32));
 
-		CloseHandle(h_process_snap);
-		return std::pair<HANDLE, int>(NULL, GAME_COUNT);
+	CloseHandle(h_process_snap);
+	return { NULL, found_index };
 }
 
 bool is_process_alive(HANDLE process)
@@ -88,7 +96,7 @@ bool is_process_alive(HANDLE process)
 	DWORD proc_status;
 	if (!GetExitCodeProcess(process, &proc_status))
 	{
-		fprintf(stderr, "Failed to get process' exit code. Error code: %d", GetLastError());
+		fprintf(stderr, "Failed to get process exit code. Error code: %d\n", GetLastError());
 		return false;
 	}
 	return proc_status == STILL_ACTIVE;

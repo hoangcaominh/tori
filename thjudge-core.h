@@ -1,5 +1,6 @@
-﻿#include <string>
-#include <utility>
+﻿#pragma once
+
+#include <string>
 #include <Windows.h>
 
 std::wstring GAME_LIST[] = {
@@ -25,6 +26,12 @@ std::wstring GAME_LIST[] = {
 };
 const int GAME_COUNT = sizeof(GAME_LIST) / sizeof(std::wstring);
 
+struct GAME_PROCESS
+{
+	HANDLE process;
+	int game;
+};
+
 // wchar_t* get_process_fullpath(DWORD);
-std::pair<HANDLE, int> get_process();
+GAME_PROCESS get_process();
 bool is_process_alive(HANDLE);

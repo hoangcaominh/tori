@@ -1,5 +1,8 @@
 #pragma once
 
+#include <cstdint>
+#include <Windows.h>
+
 // The base class for all game classes
 class THXX
 {

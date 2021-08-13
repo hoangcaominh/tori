@@ -1,6 +1,6 @@
 #include "th16.h"
 
-void TH16::read_memory()
+void TH16::reset()
 {
 
 }

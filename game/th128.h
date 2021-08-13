@@ -7,7 +7,7 @@ class TH128 : public THXX
 public:
 	TH128(HANDLE);
 
-	void read_memory() override;
+	void reset() override;
 
 	struct Medals
 	{

@@ -1,6 +1,6 @@
 #include "th08.h"
 
-void TH08::read_memory()
+void TH08::reset()
 {
 
 }

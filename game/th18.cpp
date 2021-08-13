@@ -1,6 +1,6 @@
 #include "th18.h"
 
-void TH18::read_memory()
+void TH18::reset()
 {
 
 }

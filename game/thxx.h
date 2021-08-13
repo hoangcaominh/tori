@@ -7,5 +7,5 @@
 class THXX
 {
 public:
-	virtual void read_memory() = 0;
+	virtual void reset() = 0;
 };

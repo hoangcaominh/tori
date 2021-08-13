@@ -1,6 +1,6 @@
 #include "th17.h"
 
-void TH17::read_memory()
+void TH17::reset()
 {
 
 }

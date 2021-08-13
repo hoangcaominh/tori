@@ -4,7 +4,7 @@ TH128::TH128(HANDLE process) : process(process)
 {
 }
 
-void TH128::read_memory()
+void TH128::reset()
 {
 
 }

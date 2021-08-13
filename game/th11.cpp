@@ -1,6 +1,6 @@
 #include "th11.h"
 
-void TH11::read_memory()
+void TH11::reset()
 {
 
 }

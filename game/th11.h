@@ -5,7 +5,7 @@
 class TH11 : public THXX
 {
 public:
-	void read_memory() override;
+	void reset() override;
 private:
 
 };

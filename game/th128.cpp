@@ -11,6 +11,7 @@ TH128::TH128(HANDLE process, VERSION version) : process(process)
 			{ 0x004B8A80, 0xF78 },
 			{ 0x004B892C, 0x40 },
 			{ 0x004B4CC4 },
+			{ 0x004B4D28 },
 			{ 0x004B8934, 0x7C }
 		};
 		break;
@@ -66,7 +67,9 @@ uint64_t TH128::get_score()
 {
 	if (!read_memory_32(process, th128_addr_list.score, (void*)&score, sizeof(uint32_t)))
 		fprintf(stderr, "Failed to read memory of score.\n");
-	return score * 10;
+	if (!read_memory_32(process, th128_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
+		fprintf(stderr, "Failed to read memory of continue.\n");
+	return score * 10 + continue_count;
 }
 
 TH128::Medals TH128::get_medals()

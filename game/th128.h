@@ -28,7 +28,7 @@ public:
 private:
 	HANDLE process;
 
-	// address list for 
+	// address list for th128
 	struct TH128_ADDR_LIST
 	{
 		ADDRESS_LIST difficulty;
@@ -36,6 +36,7 @@ private:
 		ADDRESS_LIST p_player_state;
 		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST score;
+		ADDRESS_LIST continue_count;
 		ADDRESS_LIST p_medal_state;
 	} th128_addr_list;
 	
@@ -53,6 +54,7 @@ private:
 	uint16_t bomb_count = 0;
 	// get score
 	uint64_t score = 0;
+	uint8_t continue_count = 0;
 	// get medals
 	uint8_t medal_state = 0, _medal_state = 0;
 	Medals medals = { 0, 0, 0 };

@@ -33,10 +33,10 @@ private:
 	{
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST stage;
-		ADDRESS_LIST p_player_state;
-		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST score;
 		ADDRESS_LIST continue_count;
+		ADDRESS_LIST p_player_state;
+		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST p_medal_state;
 	} th128_addr_list;
 	

@@ -9,10 +9,10 @@ TH14::TH14(HANDLE process, VERSION version) : process(process)
 			{ 0x004F5834 },
 			{ 0x004F5828 },
 			{ 0x004F582C },
-			{ 0x004DB67C, 0x684 },
-			{ 0x004DB52C, 0x40 },
 			{ 0x004F5830 },
 			{ 0x004F5838 },
+			{ 0x004DB67C, 0x684 },
+			{ 0x004DB52C, 0x40 }
 		};
 		break;
 	}

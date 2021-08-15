@@ -8,10 +8,10 @@ TH15::TH15(HANDLE process, VERSION version) : process(process)
 		th15_addr_list = {
 			{ 0x004E7410 },
 			{ 0x004E7404 },
-			{ 0x004E9BB8, 0x16220 },
-			{ 0x004E9A68, 0x24 },
 			{ 0x004E740C },
 			{ 0x004E7414 },
+			{ 0x004E9BB8, 0x16220 },
+			{ 0x004E9A68, 0x24 }
 		};
 		break;
 	}

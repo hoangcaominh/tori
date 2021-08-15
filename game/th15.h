@@ -26,10 +26,10 @@ private:
 	{
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST character;
-		ADDRESS_LIST p_player_state;
-		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST score;
 		ADDRESS_LIST continue_count;
+		ADDRESS_LIST p_player_state;
+		ADDRESS_LIST p_bomb_state;
 	} th15_addr_list;
 
 	// get_difficulty

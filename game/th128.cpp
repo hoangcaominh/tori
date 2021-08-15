@@ -8,10 +8,10 @@ TH128::TH128(HANDLE process, VERSION version) : process(process)
 		th128_addr_list = {
 			{ 0x004B4D0C },
 			{ 0x004B4D14 },
-			{ 0x004B8A80, 0xF78 },
-			{ 0x004B892C, 0x40 },
 			{ 0x004B4CC4 },
 			{ 0x004B4D28 },
+			{ 0x004B8A80, 0xF78 },
+			{ 0x004B892C, 0x40 },
 			{ 0x004B8934, 0x7C }
 		};
 		break;

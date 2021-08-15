@@ -45,6 +45,15 @@ const char* TH16::get_season()
 	return arr_season[season];
 }
 
+uint64_t TH16::get_score()
+{
+	if (!read_memory_32(process, th16_addr_list.score, (void*)&score, sizeof(score)))
+		fprintf(stderr, "Failed to read memory of score.\n");
+	if (!read_memory_32(process, th16_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
+		fprintf(stderr, "Failed to read memory of continue.\n");
+	return (uint64_t)score * 10 + continue_count;
+}
+
 uint16_t TH16::get_miss_count()
 {
 	if (!read_memory_32(process, th16_addr_list.p_player_state, (void*)&player_state, sizeof(player_state)))
@@ -82,13 +91,4 @@ uint16_t TH16::get_release_count()
 	_release_state = release_state;
 
 	return release_count;
-}
-
-uint64_t TH16::get_score()
-{
-	if (!read_memory_32(process, th16_addr_list.score, (void*)&score, sizeof(uint32_t)))
-		fprintf(stderr, "Failed to read memory of score.\n");
-	if (!read_memory_32(process, th16_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
-		fprintf(stderr, "Failed to read memory of continue.\n");
-	return score * 10 + continue_count;
 }

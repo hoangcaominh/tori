@@ -37,6 +37,15 @@ const char* TH13::get_character()
 	return arr_character[character];
 }
 
+uint64_t TH13::get_score()
+{
+	if (!read_memory_32(process, th13_addr_list.score, (void*)&score, sizeof(score)))
+		fprintf(stderr, "Failed to read memory of score.\n");
+	if (!read_memory_32(process, th13_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
+		fprintf(stderr, "Failed to read memory of continue.\n");
+	return (uint64_t)score * 10 + continue_count;
+}
+
 uint16_t TH13::get_miss_count()
 {
 	if (!read_memory_32(process, th13_addr_list.p_player_state, (void*)&player_state, sizeof(player_state)))
@@ -76,13 +85,4 @@ uint16_t TH13::get_trance_count()
 	_trance_state = trance_state;
 
 	return trance_count;
-}
-
-uint64_t TH13::get_score()
-{
-	if (!read_memory_32(process, th13_addr_list.score, (void*)&score, sizeof(uint32_t)))
-		fprintf(stderr, "Failed to read memory of score.\n");
-	if (!read_memory_32(process, th13_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
-		fprintf(stderr, "Failed to read memory of continue.\n");
-	return score * 10 + continue_count;
 }

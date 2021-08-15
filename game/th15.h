@@ -15,9 +15,9 @@ public:
 	void reset() override;
 	const char* get_difficulty();
 	const char* get_character();
+	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
-	uint64_t get_score();
 private:
 	HANDLE process;
 
@@ -45,6 +45,6 @@ private:
 	uint8_t bomb_state = 0, _bomb_state = 0;
 	uint16_t bomb_count = 0;
 	// get score
-	uint64_t score = 0;
+	uint32_t score = 0;
 	uint8_t continue_count = 0;
 };

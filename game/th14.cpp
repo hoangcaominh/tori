@@ -44,6 +44,15 @@ const char* TH14::get_subshot()
 	return arr_subshot[subshot];
 }
 
+uint64_t TH14::get_score()
+{
+	if (!read_memory_32(process, th14_addr_list.score, (void*)&score, sizeof(score)))
+		fprintf(stderr, "Failed to read memory of score.\n");
+	if (!read_memory_32(process, th14_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
+		fprintf(stderr, "Failed to read memory of continue.\n");
+	return (uint64_t)score * 10 + continue_count;
+}
+
 uint16_t TH14::get_miss_count()
 {
 	if (!read_memory_32(process, th14_addr_list.p_player_state, (void*)&player_state, sizeof(player_state)))
@@ -68,13 +77,4 @@ uint16_t TH14::get_bomb_count()
 	_bomb_state = bomb_state;
 
 	return bomb_count;
-}
-
-uint64_t TH14::get_score()
-{
-	if (!read_memory_32(process, th14_addr_list.score, (void*)&score, sizeof(uint32_t)))
-		fprintf(stderr, "Failed to read memory of score.\n");
-	if (!read_memory_32(process, th14_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
-		fprintf(stderr, "Failed to read memory of continue.\n");
-	return score * 10 + continue_count;
 }

@@ -29,13 +29,11 @@ const char* TH15::get_difficulty()
 	return arr_difficulty[difficulty];
 }
 
-std::string TH15::get_shottype()
+const char* TH15::get_character()
 {
-	std::string shottype;
 	if (!read_memory_32(process, th15_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	shottype += character;
-	return shottype;
+	return arr_character[character];
 }
 
 uint16_t TH15::get_miss_count()

@@ -14,7 +14,7 @@ public:
 
 	void reset() override;
 	const char* get_difficulty();
-	std::string get_shottype();
+	const char* get_character();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
 	uint16_t get_trance_count();

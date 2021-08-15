@@ -30,16 +30,18 @@ const char* TH14::get_difficulty()
 	return arr_difficulty[difficulty];
 }
 
-std::string TH14::get_shottype()
+const char* TH14::get_character()
 {
-	std::string shottype;
 	if (!read_memory_32(process, th14_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	if (!read_memory_32(process, th14_addr_list.weapon, (void*)&weapon, sizeof(weapon)))
-		fprintf(stderr, "Failed to read memory of weapon.\n");
-	shottype += character;
-	shottype += weapon;
-	return shottype;
+	return arr_character[character];
+}
+
+const char* TH14::get_subshot()
+{
+	if (!read_memory_32(process, th14_addr_list.subshot, (void*)&subshot, sizeof(subshot)))
+		fprintf(stderr, "Failed to read memory of subshot.\n");
+	return arr_subshot[subshot];
 }
 
 uint16_t TH14::get_miss_count()

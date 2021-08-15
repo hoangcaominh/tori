@@ -2,7 +2,6 @@
 
 #include "thxx.h"
 
-
 class TH14 : public THXX
 {
 public:
@@ -39,8 +38,8 @@ private:
 	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint16_t difficulty = 0;
 	// get shottype
-	const char* arr_character[2] = { "Reimu", "Marisa" };
-	const char* arr_subshot[3] = { "A", "B", "C" };
+	const char* arr_character[3] = { "Reimu", "Marisa", "Sakuya" };
+	const char* arr_subshot[2] = { "A", "B" };
 	uint8_t character = 0, subshot = 0;
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;

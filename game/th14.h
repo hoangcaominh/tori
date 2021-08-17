@@ -36,18 +36,18 @@ private:
 
 	// get_difficulty
 	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
-	uint16_t difficulty = 0;
+	uint8_t difficulty = 0;
 	// get shottype
 	const char* arr_character[3] = { "Reimu", "Marisa", "Sakuya" };
 	const char* arr_subshot[2] = { "A", "B" };
 	uint8_t character = 0, subshot = 0;
+	// get score
+	uint32_t score = 0;
+	uint8_t continue_count = 0;
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;
 	uint16_t miss_count = 0;
 	// get bomb count
 	uint8_t bomb_state = 0, _bomb_state = 0;
 	uint16_t bomb_count = 0;
-	// get score
-	uint32_t score = 0;
-	uint8_t continue_count = 0;
 };

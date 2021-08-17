@@ -38,11 +38,14 @@ private:
 
 	// get_difficulty
 	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
-	uint16_t difficulty = 0;
+	uint8_t difficulty = 0;
 	// get shottype
 	const char* arr_character[4] = { "Reimu", "Cirno", "Aya", "Marisa" };
 	const char* arr_season[4] = { "Spring", "Summer", "Autumn", "Winter" };
 	uint8_t character = 0, season = 0;
+	// get score
+	uint32_t score = 0;
+	uint8_t continue_count = 0;
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;
 	uint16_t miss_count = 0;
@@ -52,7 +55,4 @@ private:
 	// get reelase count
 	uint8_t release_state = 0, _release_state = 0;
 	uint16_t release_count = 0;
-	// get score
-	uint32_t score = 0;
-	uint8_t continue_count = 0;
 };

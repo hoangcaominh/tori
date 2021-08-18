@@ -43,7 +43,7 @@ uint64_t TH128::get_score()
 		fprintf(stderr, "Failed to read memory of score.\n");
 	if (!read_memory_32(process, th128_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
 		fprintf(stderr, "Failed to read memory of continue.\n");
-	return score * 10 + continue_count;
+	return (uint64_t)score * 10 + continue_count;
 }
 
 uint16_t TH128::get_miss_count()

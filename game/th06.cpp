@@ -43,7 +43,7 @@ uint8_t TH06::get_subshot()
 	return subshot;
 }
 
-uint32_t TH06::get_score()
+uint64_t TH06::get_score()
 {
 	if (!read_memory_32(process, th06_addr_list.score, (void*)&score, sizeof(score)))
 		fprintf(stderr, "Failed to read memory of score.\n");

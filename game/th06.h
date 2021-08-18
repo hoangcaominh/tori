@@ -22,7 +22,7 @@ public:
 	// Return the value of the current subshot
 	// A = 0, B = 1.
 	uint8_t get_subshot();
-	uint32_t get_score();
+	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
 private:

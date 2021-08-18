@@ -24,25 +24,25 @@ void TH16::reset()
 
 }
 
-const char* TH16::get_difficulty()
+uint8_t TH16::get_difficulty()
 {
 	if (!read_memory_32(process, th16_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH16::get_character()
+uint8_t TH16::get_character()
 {
 	if (!read_memory_32(process, th16_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	return arr_character[character];
+	return character;
 }
 
-const char* TH16::get_season()
+uint8_t TH16::get_seasonshot()
 {
 	if (!read_memory_32(process, th16_addr_list.season, (void*)&season, sizeof(season)))
-		fprintf(stderr, "Failed to read memory of weapon.\n");
-	return arr_season[season];
+		fprintf(stderr, "Failed to read memory of season.\n");
+	return season;
 }
 
 uint64_t TH16::get_score()

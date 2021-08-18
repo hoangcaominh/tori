@@ -13,9 +13,16 @@ public:
 	TH08(HANDLE, VERSION);
 
 	void reset() override;
-	const char* get_difficulty();
-	const char* get_character();
-	const char* get_stage();
+	// Return the value of the current difficulty.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
+	uint8_t get_difficulty();
+	// Return the value of the current character.
+	// Border team = 0, Magic team = 1, Scarlet team = 2, Ghost team = 3,
+	// Reimu = 4, Yukari = 5, Marisa = 6, Alice = 7, Sakuya = 8, Remilia = 9, Youmu = 10, Yuyuko = 11.
+	uint8_t get_character();
+	// Return the value of the current stage.
+	// Stage 1 = 0, 2 = 1, 3 = 2, 4A = 3, 4B = 4, 5 = 5, 6A = 6, 6B = 7, Extra = 8.
+	uint8_t get_stage();
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
@@ -38,13 +45,10 @@ private:
 	} th08_addr_list;
 
 	// get_difficulty
-	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint8_t difficulty = 0;
 	// get shottype
-	const char* arr_character[12] = { "Reimu & Yukari", "Marisa & Alice", "Sakuya & Remilia", "Youmu & Yuyuko", "Reimu", "Yukari", "Marisa", "Alice", "Sakuya", "Remilia", "Youmu", "Yuyuko" };
 	uint8_t character = 0;
 	// get stage
-	const char* arr_stage[9] = { "1", "2", "3", "4A", "4B", "5", "6A", "6B", "Ex" };
 	uint8_t stage = 0;
 	// get score
 	uint32_t score = 0;

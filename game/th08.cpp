@@ -25,25 +25,25 @@ void TH08::reset()
 
 }
 
-const char* TH08::get_difficulty()
+uint8_t TH08::get_difficulty()
 {
 	if (!read_memory_32(process, th08_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH08::get_character()
+uint8_t TH08::get_character()
 {
 	if (!read_memory_32(process, th08_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	return arr_character[character];
+	return character;
 }
 
-const char* TH08::get_stage()
+uint8_t TH08::get_stage()
 {
 	if (!read_memory_32(process, th08_addr_list.stage, (void*)&stage, sizeof(stage)))
 		fprintf(stderr, "Failed to read memory of stage.\n");
-	return arr_stage[stage];
+	return stage;
 }
 
 uint64_t TH08::get_score()

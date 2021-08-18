@@ -13,9 +13,15 @@ public:
 	TH16(HANDLE, VERSION);
 
 	void reset() override;
-	const char* get_difficulty();
-	const char* get_character();
-	const char* get_season();
+	// Return the value of the current difficulty.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
+	uint8_t get_difficulty();
+	// Return the value of the current character.
+	// Reimu = 0, Cirno = 1, Aya = 2, Marisa = 3.
+	uint8_t get_character();
+	// Return the value of the current season shot
+	// Spring = 0, Summer = 1, Autumn = 2, Winter = 3, Ex = 4.
+	uint8_t get_seasonshot();
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
@@ -37,11 +43,8 @@ private:
 	} th16_addr_list;
 
 	// get_difficulty
-	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint8_t difficulty = 0;
 	// get shottype
-	const char* arr_character[4] = { "Reimu", "Cirno", "Aya", "Marisa" };
-	const char* arr_season[4] = { "Spring", "Summer", "Autumn", "Winter" };
 	uint8_t character = 0, season = 0;
 	// get score
 	uint32_t score = 0;

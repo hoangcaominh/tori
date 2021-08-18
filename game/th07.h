@@ -13,9 +13,15 @@ public:
 	TH07(HANDLE, VERSION);
 
 	void reset() override;
-	const char* get_difficulty();
-	const char* get_character();
-	const char* get_subshot();
+	// Return the value of the current difficulty.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4, Phantasm = 5.
+	uint8_t get_difficulty();
+	// Return the value of the current character.
+	// Reimu = 0, Marisa = 1, Sakuya = 2.
+	uint8_t get_character();
+	// Return the value of the current subshot
+	// A = 0, B = 1.
+	uint8_t get_subshot();
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
@@ -38,11 +44,8 @@ private:
 	} th07_addr_list;
 
 	// get_difficulty
-	const char* arr_difficulty[6] = { "Easy", "Normal", "Hard", "Lunatic", "Extra", "Phantasm" };
 	uint8_t difficulty = 0;
 	// get shottype
-	const char* arr_character[3] = { "Reimu", "Marisa", "Sakuya" };
-	const char* arr_subshot[2] = { "A", "B" };
 	uint8_t character = 0, subshot = 0;
 	// get score
 	uint32_t score = 0;

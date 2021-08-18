@@ -25,25 +25,25 @@ void TH17::reset()
 
 }
 
-const char* TH17::get_difficulty()
+uint8_t TH17::get_difficulty()
 {
 	if (!read_memory_32(process, th17_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH17::get_character()
+uint8_t TH17::get_character()
 {
 	if (!read_memory_32(process, th17_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	return arr_character[character];
+	return character;
 }
 
-const char* TH17::get_subshot()
+uint8_t TH17::get_beastshot()
 {
-	if (!read_memory_32(process, th17_addr_list.subshot, (void*)&subshot, sizeof(subshot)))
-		fprintf(stderr, "Failed to read memory of subshot.\n");
-	return arr_subshot[subshot];
+	if (!read_memory_32(process, th17_addr_list.beastshot, (void*)&beastshot, sizeof(beastshot)))
+		fprintf(stderr, "Failed to read memory of beast shot.\n");
+	return beastshot;
 }
 
 uint64_t TH17::get_score()

@@ -23,25 +23,25 @@ void TH10::reset()
 
 }
 
-const char* TH10::get_difficulty()
+uint8_t TH10::get_difficulty()
 {
 	if (!read_memory_32(process, th10_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH10::get_character()
+uint8_t TH10::get_character()
 {
 	if (!read_memory_32(process, th10_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	return arr_character[character];
+	return character;
 }
 
-const char* TH10::get_subshot()
+uint8_t TH10::get_subshot()
 {
 	if (!read_memory_32(process, th10_addr_list.subshot, (void*)&subshot, sizeof(subshot)))
 		fprintf(stderr, "Failed to read memory of subshot.\n");
-	return arr_subshot[subshot];
+	return subshot;
 }
 
 uint64_t TH10::get_score()

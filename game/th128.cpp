@@ -23,18 +23,18 @@ void TH128::reset()
 
 }
 
-const char* TH128::get_difficulty()
+uint8_t TH128::get_difficulty()
 {
 	if (!read_memory_32(process, th128_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH128::get_route()
+uint8_t TH128::get_stage()
 {
 	if (!read_memory_32(process, th128_addr_list.stage, (void*)&stage, sizeof(stage)))
 		fprintf(stderr, "Failed to read memory of stage.\n");
-	return arr_route[stage];
+	return stage;
 }
 
 uint64_t TH128::get_score()

@@ -23,18 +23,18 @@ void TH13::reset()
 
 }
 
-const char* TH13::get_difficulty()
+uint8_t TH13::get_difficulty()
 {
 	if (!read_memory_32(process, th13_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))
 		fprintf(stderr, "Failed to read memory of difficulty.\n");
-	return arr_difficulty[difficulty];
+	return difficulty;
 }
 
-const char* TH13::get_character()
+uint8_t TH13::get_character()
 {
 	if (!read_memory_32(process, th13_addr_list.character, (void*)&character, sizeof(character)))
 		fprintf(stderr, "Failed to read memory of character.\n");
-	return arr_character[character];
+	return character;
 }
 
 uint64_t TH13::get_score()

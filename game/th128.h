@@ -19,8 +19,15 @@ public:
 		uint16_t bronze, silver, gold;
 	};
 
-	const char* get_difficulty();
-	const char* get_route();
+	// Return the value of the current difficulty.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
+	uint8_t get_difficulty();
+	// Return the value of the current stage.
+	// A1-1 = 1, A1-2 = 2, A1-3 = 3, A2-2 = 4, A2-3 = 5,
+	// B1-1 = 5, B1-2 = 7, B1-3 = 8, B2-2 = 9, B2-3 = 10,
+	// C1-1 = 11, C1-2 = 12, C1-3 = 13, C2-2 = 14, C2-3 = 15,
+	// Ex = 16.
+	uint8_t get_stage();
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
@@ -41,10 +48,8 @@ private:
 	} th128_addr_list;
 	
 	// get_difficulty
-	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint16_t difficulty = 0;
 	// get route
-	const char* arr_route[17] = { "?", "A", "A1", "A1", "A2", "A2", "B", "B1", "B1", "B2", "B2", "C", "C1", "C1", "C2", "C2", "Ex" };
 	uint16_t stage = 0;
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;

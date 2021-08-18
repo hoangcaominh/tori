@@ -13,8 +13,12 @@ public:
 	TH15(HANDLE, VERSION);
 
 	void reset() override;
-	const char* get_difficulty();
-	const char* get_character();
+	// Return the value of the current difficulty.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
+	uint8_t get_difficulty();
+	// Return the value of the current character.
+	// Reimu = 0, Marisa = 1, Sanae = 2, Reisen = 3.
+	uint8_t get_character();
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
@@ -33,10 +37,8 @@ private:
 	} th15_addr_list;
 
 	// get_difficulty
-	const char* arr_difficulty[5] = { "Easy", "Normal", "Hard", "Lunatic", "Extra" };
 	uint8_t difficulty = 0;
 	// get shottype
-	const char* arr_character[4] = { "Reimu", "Marisa", "Sanae", "Reisen" };
 	uint8_t character = 0;
 	// get score
 	uint32_t score = 0;

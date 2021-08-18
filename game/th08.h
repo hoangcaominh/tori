@@ -45,7 +45,7 @@ private:
 	uint8_t character = 0;
 	// get stage
 	const char* arr_stage[9] = { "1", "2", "3", "4A", "4B", "5", "6A", "6B", "Ex" };
-	uint8_t stage;
+	uint8_t stage = 0;
 	// get score
 	uint32_t score = 0;
 	uint8_t continue_count = 0;

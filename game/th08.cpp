@@ -52,6 +52,7 @@ uint64_t TH08::get_score()
 		fprintf(stderr, "Failed to read memory of score.\n");
 	if (!read_memory_32(process, th08_addr_list.continue_count, (void*)&continue_count, sizeof(continue_count)))
 		fprintf(stderr, "Failed to read memory of continue.\n");
+	// continue can exceed 9 in th08
 	return (uint64_t)score * 10 + ((continue_count > 9) ? 9 : continue_count);
 }
 

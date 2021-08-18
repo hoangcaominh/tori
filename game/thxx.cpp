@@ -11,7 +11,7 @@ bool read_memory_32(HANDLE process, ADDRESS_LIST address_list, void* buffer, siz
 		success = ReadProcessMemory(process, (void*)(address + address_list[i]), (i == length - 1) ? buffer : &address, (i == length - 1) ? buffer_size : sizeof(address), 0);
 		if (!success)
 		{
-			fprintf(stderr, "Failed to get memory from address %u\n", address + address_list[i]);
+			fprintf(stderr, "Failed to get memory from address %08X\n", address + address_list[i]);
 			return false;
 		}
 	}

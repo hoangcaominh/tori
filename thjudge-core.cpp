@@ -74,7 +74,7 @@ GAME_PROCESS get_process()
 			}
 			*/
 			// Open game process
-			process = OpenProcess(PROCESS_ALL_ACCESS, false, pe32.th32ProcessID);
+			process = OpenProcess(PROCESS_VM_READ, false, pe32.th32ProcessID);
 
 			if (!process)
 			{

@@ -1,7 +1,6 @@
 #include "thjudge-core.h"
 
-#include <stdio.h>
-#include <algorithm>
+#include <cstdio>
 #include <TlHelp32.h>
 /*
 wchar_t* get_process_fullpath(DWORD proc_id)
@@ -48,9 +47,7 @@ GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
 	if (Process32First(h_process_snap, &pe32))
 		do
 		{
-			std::wstring proc_name = pe32.szExeFile;
-			// lowercase all letters
-			std::transform(proc_name.begin(), proc_name.end(), proc_name.begin(), ::tolower);
+			std::wstring proc_name(pe32.szExeFile);
 			found_index = std::find(game_list, game_list + game_count, proc_name) - game_list;
 
 			if (found_index == game_count)

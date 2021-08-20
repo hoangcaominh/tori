@@ -25,7 +25,7 @@ wchar_t* get_process_fullpath(DWORD proc_id)
 	return fullpath;
 }
 */
-GAME_PROCESS get_process()
+GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
 {
 	HANDLE h_process_snap, process;
 	int found_index = -1;
@@ -51,9 +51,9 @@ GAME_PROCESS get_process()
 			std::wstring proc_name = pe32.szExeFile;
 			// lowercase all letters
 			std::transform(proc_name.begin(), proc_name.end(), proc_name.begin(), ::tolower);
-			found_index = std::find(GAME_LIST, GAME_LIST + GAME_COUNT, proc_name) - GAME_LIST;
+			found_index = std::find(game_list, game_list + game_count, proc_name) - game_list;
 
-			if (found_index == GAME_COUNT)
+			if (found_index == game_count)
 				continue;
 
 			/*

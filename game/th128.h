@@ -48,9 +48,9 @@ private:
 	} th128_addr_list;
 	
 	// get_difficulty
-	uint16_t difficulty = 0;
-	// get route
-	uint16_t stage = 0;
+	uint8_t difficulty = 0;
+	// get stage/route
+	uint8_t stage = 0;
 	// get miss count
 	uint8_t player_state = 0, _player_state = 0;
 	uint16_t miss_count = 0;

@@ -40,7 +40,7 @@ private:
 	} th06_addr_list;
 
 	// get_difficulty
-	uint16_t difficulty = 0;
+	uint8_t difficulty = 0;
 	// get shottype
 	uint8_t character = 0, subshot = 0;
 	// get miss count

@@ -33,8 +33,6 @@ public:
 	uint16_t get_bomb_count();
 	UFOs get_ufo_count();
 private:
-	HANDLE process;
-
 	// address list for th12
 	struct TH12_ADDR_LIST
 	{
@@ -48,6 +46,21 @@ private:
 		ADDRESS_LIST vaults;
 		ADDRESS_LIST vault_count;
 	} th12_addr_list;
+
+	// th12 v1.00b address list
+	const TH12_ADDR_LIST TH12_ADDR_LIST_V100B = {
+		{ 0x004B0CA8 },
+		{ 0x004B0C90 },
+		{ 0x004B0C94 },
+		{ 0x004B0C44 },
+		{ 0x004B0CC4 },
+		{ 0x004B4514, 0xA28 },
+		{ 0x004B43C4, 0x3C },
+		{ 0x004B0C4C },
+		{ 0x004B0C58 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

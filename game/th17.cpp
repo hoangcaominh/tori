@@ -5,17 +5,7 @@ TH17::TH17(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH17::VERSION::V100B:
-		th17_addr_list = {
-			{ 0x004B5A00 },
-			{ 0x004B59F4 },
-			{ 0x004B59F8 },
-			{ 0x004B59FC },
-			{ 0x004B5A04 },
-			{ 0x004B77D0, 0x18DB0 },
-			{ 0x004B7688, 0x30 },
-			{ 0x004B5ABC },
-			{ 0x004B5AC4 }
-		};
+		th17_addr_list = TH17_ADDR_LIST_V100B;
 		break;
 	}
 }

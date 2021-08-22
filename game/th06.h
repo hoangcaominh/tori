@@ -26,8 +26,6 @@ public:
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
 private:
-	HANDLE process;
-
 	// address list for th06
 	struct TH06_ADDR_LIST
 	{
@@ -38,6 +36,18 @@ private:
 		ADDRESS_LIST deathbomb_window;
 		ADDRESS_LIST bomb_count;
 	} th06_addr_list;
+	
+	// th06 v1.02h address list
+	const TH06_ADDR_LIST TH06_ADDR_LIST_V102H = {
+		{ 0x0069BCB0 },
+		{ 0x0069D4BD },
+		{ 0x0069D4BE },
+		{ 0x0069BCA0 },
+		{ 0x006CB000 },
+		{ 0x0069BCC4 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

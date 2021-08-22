@@ -23,8 +23,6 @@ public:
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
 private:
-	HANDLE process;
-
 	// address list for th18
 	struct TH18_ADDR_LIST
 	{
@@ -35,6 +33,18 @@ private:
 		ADDRESS_LIST p_player_state;
 		ADDRESS_LIST p_bomb_state;
 	} th18_addr_list;
+
+	// th18 v1.00a address list
+	const TH18_ADDR_LIST TH18_ADDR_LIST_V100A = {
+		{ 0x004CCD00 },
+		{ 0x004CCCF4 },
+		{ 0x004CCCFC },
+		{ 0x004CCD04 },
+		{ 0x004CF410, 0x476AC },
+		{ 0x004CF2B8, 0x30 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

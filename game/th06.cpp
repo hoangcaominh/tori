@@ -5,14 +5,7 @@ TH06::TH06(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH06::VERSION::V102H:
-		th06_addr_list = {
-			{ 0x0069BCB0 },
-			{ 0x0069D4BD },
-			{ 0x0069D4BE },
-			{ 0x0069BCA0 },
-			{ 0x006CB000 },
-			{ 0x0069BCC4 }
-		};
+		th06_addr_list = TH06_ADDR_LIST_V102H;
 		break;
 	}
 }

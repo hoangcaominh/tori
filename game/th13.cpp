@@ -5,15 +5,7 @@ TH13::TH13(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH13::VERSION::V100C:
-		th13_addr_list = {
-			{ 0x004BE7C4 },
-			{ 0x004BE7B8 },
-			{ 0x004BE7C0 },
-			{ 0x004BE7C8 },
-			{ 0x004C22C4, 0x65C },
-			{ 0x004C2170, 0x40 },
-			{ 0x004BE831 }
-		};
+		th13_addr_list = TH13_ADDR_LIST_V100C;
 		break;
 	}
 }

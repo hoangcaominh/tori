@@ -28,8 +28,6 @@ public:
 	uint16_t get_bomb_count();
 	uint16_t get_spell_captured_count();
 private:
-	HANDLE process;
-
 	// address list for th08
 	struct TH08_ADDR_LIST
 	{
@@ -43,6 +41,21 @@ private:
 		ADDRESS_LIST deathbomb_count;
 		ADDRESS_LIST spell_captured_count;
 	} th08_addr_list;
+
+	// th08 v1.00d address list
+	const TH08_ADDR_LIST TH08_ADDR_LIST_V100D = {
+		{ 0x0160F538 },
+		{ 0x0164D0B1 },
+		{ 0x004E4850 },
+		{ 0x0160F510, 0x0 },
+		{ 0x004D77DC },
+		{ 0x0164CFA4 },
+		{ 0x0164CFA8 },
+		{ 0x0164CFAC },
+		{ 0x0160F510, 0x1C }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

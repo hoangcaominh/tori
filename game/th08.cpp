@@ -5,17 +5,7 @@ TH08::TH08(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH08::VERSION::V100D:
-		th08_addr_list = {
-			{ 0x0160F538 },
-			{ 0x0164D0B1 },
-			{ 0x004E4850 },
-			{ 0x0160F510, 0x0 },
-			{ 0x004D77DC },
-			{ 0x0164CFA4 },
-			{ 0x0164CFA8 },
-			{ 0x0164CFAC },
-			{ 0x0160F510, 0x1C }
-		};
+		th08_addr_list = TH08_ADDR_LIST_V100D;
 		break;
 	}
 }

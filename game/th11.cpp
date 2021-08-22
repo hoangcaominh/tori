@@ -5,15 +5,7 @@ TH11::TH11(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH11::VERSION::V100A:
-		th11_addr_list = {
-			{ 0x004A5720 },
-			{ 0x004A5710 },
-			{ 0x004A5714 },
-			{ 0x004A56E4 },
-			{ 0x004A573C },
-			{ 0x004A8EB4, 0x928 },
-			{ 0x004A8D64, 0x3C }
-		};
+		th11_addr_list = TH11_ADDR_LIST_V100A;
 		break;
 	}
 }

@@ -5,15 +5,7 @@ TH10::TH10(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH10::VERSION::V100A:
-		th10_addr_list = {
-			{ 0x00474C74 },
-			{ 0x00474C68 },
-			{ 0x00474C6C },
-			{ 0x00474C44 },
-			{ 0x00474C90 },
-			{ 0x00477834, 0x458 },
-			{ 0x004776EC, 0x28 }
-		};
+		th10_addr_list = TH10_ADDR_LIST_V100A;
 		break;
 	}
 }

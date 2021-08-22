@@ -27,8 +27,6 @@ public:
 	uint16_t get_bomb_count();
 	uint16_t get_release_count();
 private:
-	HANDLE process;
-
 	// address list for th16
 	struct TH16_ADDR_LIST
 	{
@@ -41,6 +39,20 @@ private:
 		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST p_release_state;
 	} th16_addr_list;
+
+	// th16 v1.00a address list
+	const TH16_ADDR_LIST TH16_ADDR_LIST_V100A = {
+		{ 0x004A57B4 },
+		{ 0x004A57A4 },
+		{ 0x004A57AC },
+		{ 0x004A57B0 },
+		{ 0x004A57B8 },
+		{ 0x004A6EF8, 0x165A8 },
+		{ 0x004A6DA8, 0x30 },
+		{ 0x004A6DA4, 0x30 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

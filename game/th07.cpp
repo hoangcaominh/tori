@@ -5,17 +5,7 @@ TH07::TH07(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH07::VERSION::V100B:
-		th07_addr_list = {
-			{ 0x00626280 },
-			{ 0x0062F645 },
-			{ 0x0062F646 },
-			{ 0x00626278, 0x0 },
-			{ 0x00626278, 0x20 },
-			{ 0x00626278, 0x50 },
-			{ 0x00626278, 0x6C },
-			{ 0x004BFEE5 },
-			{ 0x01346218 }
-		};
+		th07_addr_list = TH07_ADDR_LIST_V100B;
 		break;
 	}
 }

@@ -24,8 +24,6 @@ public:
 	uint16_t get_bomb_count();
 	uint16_t get_trance_count();
 private:
-	HANDLE process;
-
 	// address list for th13
 	struct TH13_ADDR_LIST
 	{
@@ -37,6 +35,19 @@ private:
 		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST trance_state;
 	} th13_addr_list;
+
+	// th13 v1.00c address list
+	const TH13_ADDR_LIST TH13_ADDR_LIST_V100C = {
+		{ 0x004BE7C4 },
+		{ 0x004BE7B8 },
+		{ 0x004BE7C0 },
+		{ 0x004BE7C8 },
+		{ 0x004C22C4, 0x65C },
+		{ 0x004C2170, 0x40 },
+		{ 0x004BE831 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

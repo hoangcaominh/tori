@@ -5,14 +5,7 @@ TH18::TH18(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH18::VERSION::V100A:
-		th18_addr_list = {
-			{ 0x004CCD00 },
-			{ 0x004CCCF4 },
-			{ 0x004CCCFC },
-			{ 0x004CCD04 },
-			{ 0x004CF410, 0x476AC },
-			{ 0x004CF2B8, 0x30 }
-		};
+		th18_addr_list = TH18_ADDR_LIST_V100A;
 		break;
 	}
 }

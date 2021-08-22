@@ -32,8 +32,6 @@ public:
 	uint16_t get_bomb_count();
 	Hypers get_hyper_count();
 private:
-	HANDLE process;
-
 	// address list for th17
 	struct TH17_ADDR_LIST
 	{
@@ -47,6 +45,21 @@ private:
 		ADDRESS_LIST hyper_type;
 		ADDRESS_LIST hyper_state;
 	} th17_addr_list;
+
+	// th17 v1.00b address list
+	const TH17_ADDR_LIST TH17_ADDR_LIST_V100B = {
+		{ 0x004B5A00 },
+		{ 0x004B59F4 },
+		{ 0x004B59F8 },
+		{ 0x004B59FC },
+		{ 0x004B5A04 },
+		{ 0x004B77D0, 0x18DB0 },
+		{ 0x004B7688, 0x30 },
+		{ 0x004B5ABC },
+		{ 0x004B5AC4 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

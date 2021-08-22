@@ -33,8 +33,6 @@ public:
 	uint16_t get_bomb_count();
 	Medals get_medals();
 private:
-	HANDLE process;
-
 	// address list for th128
 	struct TH128_ADDR_LIST
 	{
@@ -46,7 +44,20 @@ private:
 		ADDRESS_LIST p_bomb_state;
 		ADDRESS_LIST p_medal_state;
 	} th128_addr_list;
-	
+
+	// th128 v1.00a address list
+	const TH128_ADDR_LIST TH128_ADDR_LIST_V100A = {
+		{ 0x004B4D0C },
+		{ 0x004B4D14 },
+		{ 0x004B4CC4 },
+		{ 0x004B4D28 },
+		{ 0x004B8A80, 0xF78 },
+		{ 0x004B892C, 0x40 },
+		{ 0x004B8934, 0x7C }
+	};
+private:
+	HANDLE process;
+
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get stage/route

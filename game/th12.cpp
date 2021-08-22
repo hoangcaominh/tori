@@ -5,17 +5,7 @@ TH12::TH12(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH12::VERSION::V100B:
-		th12_addr_list = {
-			{ 0x004B0CA8 },
-			{ 0x004B0C90 },
-			{ 0x004B0C94 },
-			{ 0x004B0C44 },
-			{ 0x004B0CC4 },
-			{ 0x004B4514, 0xA28 },
-			{ 0x004B43C4, 0x3C },
-			{ 0x004B0C4C },
-			{ 0x004B0C58 }
-		};
+		th12_addr_list = TH12_ADDR_LIST_V100B;
 		break;
 	}
 }

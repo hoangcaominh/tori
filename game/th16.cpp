@@ -5,16 +5,7 @@ TH16::TH16(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH16::VERSION::V100A:
-		th16_addr_list = {
-			{ 0x004A57B4 },
-			{ 0x004A57A4 },
-			{ 0x004A57AC },
-			{ 0x004A57B0 },
-			{ 0x004A57B8 },
-			{ 0x004A6EF8, 0x165A8 },
-			{ 0x004A6DA8, 0x30 },
-			{ 0x004A6DA4, 0x30 }
-		};
+		th16_addr_list = TH16_ADDR_LIST_V100A;
 		break;
 	}
 }

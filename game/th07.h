@@ -27,8 +27,6 @@ public:
 	uint16_t get_bomb_count();
 	uint16_t get_border_break_count();
 private:
-	HANDLE process;
-
 	// address list for th07
 	struct TH07_ADDR_LIST
 	{
@@ -42,6 +40,21 @@ private:
 		ADDRESS_LIST cherryp_state;
 		ADDRESS_LIST border_state;
 	} th07_addr_list;
+
+	// th07 v1.00b address list
+	const TH07_ADDR_LIST TH07_ADDR_LIST_V100B = {
+		{ 0x00626280 },
+		{ 0x0062F645 },
+		{ 0x0062F646 },
+		{ 0x00626278, 0x0 },
+		{ 0x00626278, 0x20 },
+		{ 0x00626278, 0x50 },
+		{ 0x00626278, 0x6C },
+		{ 0x004BFEE5 },
+		{ 0x01346218 }
+	};
+private:
+	HANDLE process;
 
 	// get_difficulty
 	uint8_t difficulty = 0;

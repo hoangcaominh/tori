@@ -5,14 +5,7 @@ TH15::TH15(HANDLE process, VERSION version) : process(process)
 	switch (version)
 	{
 	case TH15::VERSION::V100B:
-		th15_addr_list = {
-			{ 0x004E7410 },
-			{ 0x004E7404 },
-			{ 0x004E740C },
-			{ 0x004E7414 },
-			{ 0x004E9BB8, 0x16220 },
-			{ 0x004E9A68, 0x24 }
-		};
+		th15_addr_list = TH15_ADDR_LIST_V100B;
 		break;
 	}
 }

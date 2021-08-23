@@ -6,7 +6,7 @@
 struct GAME_PROCESS
 {
 	HANDLE process;
-	int game;
+	int index;
 };
 
 // wchar_t* get_process_fullpath(DWORD);

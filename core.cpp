@@ -1,4 +1,4 @@
-#include "thjudge-core.h"
+#include "core.h"
 
 #include <cstdio>
 #include <TlHelp32.h>

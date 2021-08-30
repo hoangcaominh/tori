@@ -1,1 +1,1 @@
-The core of THJudge.
+The description is being updated. Please watch warmly.

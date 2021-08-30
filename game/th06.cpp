@@ -12,7 +12,16 @@ TH06::TH06(HANDLE process, VERSION version) : process(process)
 
 void TH06::reset()
 {
+	miss_count = 0;
+}
 
+bool TH06::is_ingame()
+{
+	if (!read_memory_32(process, th06_addr_list.menu_showing, (void*)&menu_showing, sizeof(menu_showing)))
+		fprintf(stderr, "Failed to read memory of menu showing.\n");
+	if (!read_memory_32(process, th06_addr_list.menu, (void*)&menu, sizeof(menu)))
+		fprintf(stderr, "Failed to read memory of menu.\n");
+	return menu_showing == 0 && !(menu == 16 || menu == 1 || menu == 2 || menu == 10);
 }
 
 uint8_t TH06::get_difficulty()

@@ -12,7 +12,11 @@ public:
 
 	TH08(HANDLE, VERSION);
 
+	// Resets all counters of a game handle
 	void reset() override;
+	// Detects whether the game is being played
+	bool is_ingame() override;
+
 	// Return the value of the current difficulty.
 	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
 	uint8_t get_difficulty();
@@ -31,6 +35,7 @@ private:
 	// address list for th08
 	struct TH08_ADDR_LIST
 	{
+		ADDRESS_LIST menu;
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST character;
 		ADDRESS_LIST stage;
@@ -44,6 +49,7 @@ private:
 
 	// th08 v1.00d address list
 	const TH08_ADDR_LIST TH08_ADDR_LIST_V100D = {
+		{ 0x017CE8B0 },
 		{ 0x0160F538 },
 		{ 0x0164D0B1 },
 		{ 0x004E4850 },
@@ -57,6 +63,8 @@ private:
 private:
 	HANDLE process;
 
+	// menu value, used for detecting in-game state, which is 2
+	uint8_t menu = 0;
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get shottype

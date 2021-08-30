@@ -16,8 +16,12 @@ public:
 	{
 		uint16_t wolf, otter, eagle, neutral, break_count;
 	};
-	
+
+	// Resets all counters of a game handle
 	void reset() override;
+	// Detects whether the game is being played
+	bool is_ingame() override;
+
 	// Return the value of the current difficulty.
 	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
 	uint8_t get_difficulty();
@@ -35,6 +39,7 @@ private:
 	// address list for th17
 	struct TH17_ADDR_LIST
 	{
+		ADDRESS_LIST p_menu;
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST character;
 		ADDRESS_LIST beastshot;
@@ -48,6 +53,7 @@ private:
 
 	// th17 v1.00b address list
 	const TH17_ADDR_LIST TH17_ADDR_LIST_V100B = {
+		{ 0x004B77F0 },
 		{ 0x004B5A00 },
 		{ 0x004B59F4 },
 		{ 0x004B59F8 },
@@ -61,6 +67,8 @@ private:
 private:
 	HANDLE process;
 
+	// menu pointer, used for detecting in-game state
+	uint32_t p_menu = 0;
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get shottype

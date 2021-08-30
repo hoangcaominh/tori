@@ -12,7 +12,15 @@ TH14::TH14(HANDLE process, VERSION version) : process(process)
 
 void TH14::reset()
 {
+	miss_count = 0;
+	bomb_count = 0;
+}
 
+bool TH14::is_ingame()
+{
+	if (!read_memory_32(process, th14_addr_list.p_menu, (void*)&p_menu, sizeof(p_menu)))
+		fprintf(stderr, "Failed to read memory of menu pointer.\n");
+	return p_menu == NULL;
 }
 
 uint8_t TH14::get_difficulty()

@@ -12,7 +12,14 @@ TH07::TH07(HANDLE process, VERSION version) : process(process)
 
 void TH07::reset()
 {
+	border_break_count = 0;
+}
 
+bool TH07::is_ingame()
+{
+	if (!read_memory_32(process, th07_addr_list.ingame_state, (void*)&ingame_state, sizeof(ingame_state)))
+		fprintf(stderr, "Failed to read memory of in-game state.\n");
+	return ingame_state != 0;
 }
 
 uint8_t TH07::get_difficulty()

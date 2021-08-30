@@ -12,7 +12,16 @@ TH17::TH17(HANDLE process, VERSION version) : process(process)
 
 void TH17::reset()
 {
+	miss_count = 0;
+	bomb_count = 0;
+	hypers = { 0, 0, 0, 0 };
+}
 
+bool TH17::is_ingame()
+{
+	if (!read_memory_32(process, th17_addr_list.p_menu, (void*)&p_menu, sizeof(p_menu)))
+		fprintf(stderr, "Failed to read memory of menu pointer.\n");
+	return p_menu == NULL;
 }
 
 uint8_t TH17::get_difficulty()

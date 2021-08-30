@@ -12,7 +12,11 @@ public:
 
 	TH06(HANDLE, VERSION);
 
+	// Resets all counters of a game handle
 	void reset() override;
+	// Detects whether the game is being played
+	bool is_ingame() override;
+
 	// Return the value of the current difficulty.
 	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
 	uint8_t get_difficulty();
@@ -29,6 +33,8 @@ private:
 	// address list for th06
 	struct TH06_ADDR_LIST
 	{
+		ADDRESS_LIST menu_showing;
+		ADDRESS_LIST menu;
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST character;
 		ADDRESS_LIST subshot;
@@ -39,6 +45,8 @@ private:
 	
 	// th06 v1.02h address list
 	const TH06_ADDR_LIST TH06_ADDR_LIST_V102H = {
+		{ 0x006DC8F8 },
+		{ 0x006DC8B0 },
 		{ 0x0069BCB0 },
 		{ 0x0069D4BD },
 		{ 0x0069D4BE },
@@ -49,6 +57,9 @@ private:
 private:
 	HANDLE process;
 
+	// menu values used for detecting in-game state using touhourpc method
+	bool menu_showing = false;
+	uint8_t menu = 0;
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get shottype

@@ -12,7 +12,10 @@ public:
 
 	TH128(HANDLE, VERSION);
 
+	// Resets all counters of a game handle
 	void reset() override;
+	// Detects whether the game is being played
+	bool is_ingame() override;
 
 	struct Medals
 	{
@@ -36,6 +39,7 @@ private:
 	// address list for th128
 	struct TH128_ADDR_LIST
 	{
+		ADDRESS_LIST p_menu;
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST stage;
 		ADDRESS_LIST score;
@@ -47,6 +51,7 @@ private:
 
 	// th128 v1.00a address list
 	const TH128_ADDR_LIST TH128_ADDR_LIST_V100A = {
+		{ 0x004B8A9C },
 		{ 0x004B4D0C },
 		{ 0x004B4D14 },
 		{ 0x004B4CC4 },
@@ -58,6 +63,8 @@ private:
 private:
 	HANDLE process;
 
+	// menu pointer, used for detecting in-game state
+	uint32_t p_menu = 0;
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get stage/route

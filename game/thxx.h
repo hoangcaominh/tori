@@ -14,4 +14,5 @@ class THXX
 {
 public:
 	virtual void reset() = 0;
+	virtual bool is_ingame() = 0;
 };

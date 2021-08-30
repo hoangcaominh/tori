@@ -15,6 +15,13 @@ void TH08::reset()
 
 }
 
+bool TH08::is_ingame()
+{
+	if (!read_memory_32(process, th08_addr_list.menu, (void*)&menu, sizeof(menu)))
+		fprintf(stderr, "Failed to read memory of menu.\n");
+	return menu == 2;
+}
+
 uint8_t TH08::get_difficulty()
 {
 	if (!read_memory_32(process, th08_addr_list.difficulty, (void*)&difficulty, sizeof(difficulty)))

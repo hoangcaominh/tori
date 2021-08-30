@@ -12,7 +12,11 @@ public:
 
 	TH11(HANDLE, VERSION);
 
+	// Resets all counters of a game handle
 	void reset() override;
+	// Detects whether the game is being played
+	bool is_ingame() override;
+
 	// Return the value of the current difficulty.
 	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
 	uint8_t get_difficulty();
@@ -29,6 +33,7 @@ private:
 	// address list for th11
 	struct TH11_ADDR_LIST
 	{
+		ADDRESS_LIST p_menu;
 		ADDRESS_LIST difficulty;
 		ADDRESS_LIST character;
 		ADDRESS_LIST subshot;
@@ -40,6 +45,7 @@ private:
 
 	// th11 v1.00a address list
 	const TH11_ADDR_LIST TH11_ADDR_LIST_V100A = {
+		{ 0x004A8ECC },
 		{ 0x004A5720 },
 		{ 0x004A5710 },
 		{ 0x004A5714 },
@@ -51,6 +57,8 @@ private:
 private:
 	HANDLE process;
 
+	// menu pointer, used for detecting in-game state
+	uint32_t p_menu = 0;
 	// get_difficulty
 	uint8_t difficulty = 0;
 	// get shottype

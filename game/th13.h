@@ -18,7 +18,7 @@ public:
 	bool is_ingame() override;
 
 	// Return the value of the current difficulty.
-	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4.
+	// Easy = 0, Normal = 1, Hard = 2, Lunatic = 3, Extra = 4, Overdrive = 5.
 	uint8_t get_difficulty();
 	// Return the value of the current character.
 	// Reimu = 0, Marisa = 1, Sanae = 2, Youmu = 3.

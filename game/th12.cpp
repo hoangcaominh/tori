@@ -80,7 +80,7 @@ uint16_t TH12::get_bomb_count()
 	return bomb_count;
 }
 
-TH12::UFOs TH12::get_ufo_count()
+TH12::UFO_COUNT TH12::get_ufo_count()
 {
 	if (!read_memory_32(process, th12_addr_list.vaults, (void*)&vaults, sizeof(vaults)))
 		fprintf(stderr, "Failed to read memory of vaults.\n");

@@ -17,7 +17,7 @@ public:
 	// Detects whether the game is being played
 	bool is_ingame() override;
 
-	struct UFOs
+	struct UFO_COUNT
 	{
 		uint16_t red, blue, green, rainbow;
 	};
@@ -34,7 +34,7 @@ public:
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
-	UFOs get_ufo_count();
+	UFO_COUNT get_ufo_count();
 private:
 	// address list for th12
 	struct TH12_ADDR_LIST
@@ -84,5 +84,5 @@ private:
 	uint16_t bomb_count = 0;
 	// get UFO count
 	uint32_t vaults[3], vault_count = 0, _vault_count = 0;
-	UFOs ufos = { 0, 0, 0 };
+	UFO_COUNT ufos = { 0, 0, 0 };
 };

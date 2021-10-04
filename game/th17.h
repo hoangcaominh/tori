@@ -12,7 +12,7 @@ public:
 
 	TH17(HANDLE, VERSION);
 
-	struct Hypers
+	struct HYPER_COUNT
 	{
 		uint16_t wolf, otter, eagle, neutral, break_count;
 	};
@@ -34,7 +34,7 @@ public:
 	uint64_t get_score();
 	uint16_t get_miss_count();
 	uint16_t get_bomb_count();
-	Hypers get_hyper_count();
+	HYPER_COUNT get_hyper_count();
 private:
 	// address list for th17
 	struct TH17_ADDR_LIST
@@ -87,5 +87,5 @@ private:
 	uint16_t hyper_state = 0;
 	bool hyper_active = false, _hyper_active = false;
 	bool hyper_break = false, _hyper_break = false;
-	Hypers hypers = { 0, 0, 0, 0, 0 };
+	HYPER_COUNT hypers = { 0, 0, 0, 0, 0 };
 };

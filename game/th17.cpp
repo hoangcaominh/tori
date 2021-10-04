@@ -80,7 +80,7 @@ uint16_t TH17::get_bomb_count()
 	return bomb_count;
 }
 
-TH17::Hypers TH17::get_hyper_count()
+TH17::HYPER_COUNT TH17::get_hyper_count()
 {
 	if (!read_memory_32(process, th17_addr_list.hyper_type, (void*)&hyper_type, sizeof(hyper_type)))
 		fprintf(stderr, "Failed to read memory of hyper type.\n");

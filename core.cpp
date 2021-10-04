@@ -24,10 +24,9 @@ wchar_t* get_process_fullpath(DWORD proc_id)
 	return fullpath;
 }
 */
-GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
+HANDLE get_process(const wchar_t* process_name)
 {
 	HANDLE h_process_snap, process;
-	int found_index = -1;
 
 	// Take a snapshot of all processes in the system.
 	h_process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -35,7 +34,7 @@ GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
 	{
 		// Failed to snap process
 		fprintf(stderr, "Error: Invalid handle value for process snapping!\n");
-		return { NULL, -1 };
+		return NULL;
 	}
 
 	PROCESSENTRY32 pe32;
@@ -47,10 +46,7 @@ GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
 	if (Process32First(h_process_snap, &pe32))
 		do
 		{
-			std::wstring proc_name(pe32.szExeFile);
-			found_index = std::find(game_list, game_list + game_count, proc_name) - game_list;
-
-			if (found_index == game_count)
+			if (wcscmp(pe32.szExeFile, process_name))
 				continue;
 
 			/*
@@ -81,11 +77,11 @@ GAME_PROCESS get_process(std::wstring* game_list, size_t game_count)
 			}
 
 			// Found game, exit loop
-			return { process, found_index };
+			return process;
 		} while (Process32Next(h_process_snap, &pe32));
 
 	CloseHandle(h_process_snap);
-	return { NULL, found_index };
+	return NULL;
 }
 
 bool is_process_alive(HANDLE process)

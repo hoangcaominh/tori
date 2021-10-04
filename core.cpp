@@ -67,7 +67,7 @@ HANDLE get_process(const wchar_t* process_name)
 			}
 			*/
 			// Open game process
-			process = OpenProcess(PROCESS_ALL_ACCESS, false, pe32.th32ProcessID);
+			process = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_LIMITED_INFORMATION, false, pe32.th32ProcessID);
 
 			if (!process)
 			{

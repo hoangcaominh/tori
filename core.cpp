@@ -86,26 +86,10 @@ HANDLE get_process(const wchar_t* process_name)
 	if (Process32First(h_process_snap, &pe32))
 		do
 		{
+			// Skip if process name doesn't match
 			if (wcscmp(pe32.szExeFile, process_name))
 				continue;
 
-			/*
-			wchar_t* path = get_process_fullpath(pe32.th32ProcessID);
-
-			BOOL verify = VerifyVersion(fullpath, game);
-			if (verify >= 0)
-			{
-				// Open game process
-				gameProc = OpenProcess(PROCESS_ALL_ACCESS, false, pe32.th32ProcessID);
-
-				if (!gameProc)
-				{
-					// Failed to open process
-					CloseHandle(h_process_snap);
-					return -2;
-				}
-			}
-			*/
 			// Open game process
 			process = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_LIMITED_INFORMATION, false, pe32.th32ProcessID);
 

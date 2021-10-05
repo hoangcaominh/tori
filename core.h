@@ -2,7 +2,8 @@
 
 #include <Windows.h>
 
-// wchar_t* get_process_fullpath(DWORD);
+// verify executable version using sha256 hash
+bool verify_version(HANDLE, const char*);
 
 // get process from a specified game
 HANDLE get_process(const wchar_t*);

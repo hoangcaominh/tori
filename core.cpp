@@ -2,28 +2,68 @@
 
 #include <cstdio>
 #include <TlHelp32.h>
-/*
-wchar_t* get_process_fullpath(DWORD proc_id)
-{
-	wchar_t* fullpath = L"";
+#include <Psapi.h>
+#include "sha256.h"
 
-	HANDLE h_module_snap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE32 | TH32CS_SNAPMODULE, proc_id);
-	if (h_module_snap == INVALID_HANDLE_VALUE)
+bool verify_version(HANDLE process, const char* sha256_hash_string)
+{
+	wchar_t path[MAX_PATH];
+	FILE* file = nullptr;
+	long filesize;
+	unsigned char* buffer = 0;
+
+	// get file path
+	if (!GetModuleFileNameEx(process, NULL, path, MAX_PATH))
 	{
-		fprintf(stderr, "Error: Invalid handle value for module snapping!\n");
-		return nullptr;
+		fprintf(stderr, "Failed to get executable path from process. Error: %d\n", GetLastError());
+		return false;
 	}
 
-	MODULEENTRY32 me32;
-	me32.dwSize = sizeof(MODULEENTRY32);
+	// get file size
+	_wfopen_s(&file, path, L"rb");
+	if (!file)
+	{
+		fprintf(stderr, "Failed to open executable from process. Error: %d\n", GetLastError());
+		return false;
+	}
+	fseek(file, 0, SEEK_END);
+	filesize = ftell(file);
+	fseek(file, 0, SEEK_SET);
 
-	if (Module32First(h_module_snap, &me32))
-		wcscpy_s(fullpath, wcslen(me32.szExePath) + 1, me32.szExePath);
+	// read file content to buffer
+	buffer = (unsigned char*)malloc(filesize + 1);
+	if (!buffer)
+	{
+		fprintf(stderr, "Failed to allocate memory for buffer. Error: %d\n", GetLastError());
+		return false;
+	}
+	fread(buffer, 1, filesize, file);
+	fclose(file);
+	buffer[filesize] = '\0';
 
-	CloseHandle(h_module_snap);
-	return fullpath;
+	// sha256 hashing
+	SHA256_CTX ctx;
+	BYTE hash[32];
+	char result[65];
+
+	sha256_init(&ctx);
+	sha256_update(&ctx, buffer, filesize);
+	sha256_final(&ctx, hash);
+
+	result[64] = '\0';
+	for (int i = 0; i < 32; i++)
+	{
+		// sprintf(result + (i * 2), "%02x", hash[i]);
+		snprintf(result + (i * 2), 32, "%02x", hash[i]);
+	}
+
+	// clear buffer memory
+	free(buffer);
+	printf("%s\n", result);
+
+	return strcmp(result, sha256_hash_string) == 0;
 }
-*/
+
 HANDLE get_process(const wchar_t* process_name)
 {
 	HANDLE h_process_snap, process;

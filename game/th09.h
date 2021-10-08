@@ -2,10 +2,13 @@
 
 #include "thxx.h"
 
-class TH09 : public THXX
+namespace tori
 {
-public:
-	void reset() override;
-private:
+	class TH09 : public THXX
+	{
+	public:
+		void reset() override;
+	private:
 
-};
+	};
+}

@@ -1,6 +1,9 @@
 #include "th09.h"
 
-void TH09::reset()
+namespace tori
 {
+	void TH09::reset()
+	{
 
+	}
 }

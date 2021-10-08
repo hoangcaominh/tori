@@ -1,6 +1,6 @@
 #include "thxx.h"
 
-bool read_memory_32(HANDLE process, ADDRESS_LIST address_list, void* buffer, size_t buffer_size)
+bool THXX::read_memory_32(HANDLE process, ADDRESS_LIST address_list, void* buffer, size_t buffer_size)
 {
 	size_t length = address_list.size();
 	uint32_t address = 0;

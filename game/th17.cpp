@@ -87,7 +87,7 @@ namespace tori
 		if (!read_memory_32(process, th17_addr_list.hyper_type, (void*)&hyper_type, sizeof(hyper_type)))
 			fprintf(stderr, "Failed to read memory of hyper type.\n");
 		if (!read_memory_32(process, th17_addr_list.hyper_state, (void*)&hyper_state, sizeof(hyper_state)))
-			fprintf(stderr, "Failed to read memory of bomb state.\n");
+			fprintf(stderr, "Failed to read memory of hyper state.\n");
 
 		hyper_active = hyper_state & (1 << 1);
 		hyper_break = hyper_state & (1 << 2);
